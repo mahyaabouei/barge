@@ -9,7 +9,6 @@ class CaptchaGenerate(Resource):
 
     """
     def get(self):
-        print(0)
         Captcha = GuardPyCaptcha()
         Captcha = Captcha.Captcha_generation(num_char=4,only_num=True)
         return Captcha,200

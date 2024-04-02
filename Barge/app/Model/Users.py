@@ -9,6 +9,7 @@ class User(Document):
     name = StringField()
     createAt = DateTimeField()
     expier = DateTimeField()
+    avatar = StringField()
 
     @classmethod
     def get_user_one_by_phone(cls, mobile_number):
@@ -19,7 +20,8 @@ class User(Document):
                 'mobile': user_one.mobile,
                 'name': user_one.name,
                 'createAt': user_one.createAt,
-                'expier': user_one.expier
+                'expier': user_one.expier,
+                'avatar':user_one.avatar
             }
             return user_dict
         else:
@@ -29,11 +31,12 @@ class User(Document):
         user_one = cls.objects(_id=ObjectId(id)).first()
         if user_one:
             user_dict = {
-                '_id': str(user_one._id),
+                'id': str(user_one._id),
                 'mobile': user_one.mobile,
                 'name': user_one.name,
                 'createAt': user_one.createAt,
-                'expier': user_one.expier
+                'expier': user_one.expier,
+                'avatar':user_one.avatar
             }
             return user_dict
         else:
