@@ -5,6 +5,7 @@ import datetime
 from ast  import literal_eval
 from app.Service.config import expier_new_user
 from persiantools.jdatetime import JalaliDate
+from app.Model.Notifications import Notifications
 
 parser = reqparse.RequestParser()
 parser.add_argument('phone', type=str, help='شماره همراه را وارد کنید',required=True)
@@ -27,6 +28,8 @@ class Login(Resource):
             expier = createAt + datetime.timedelta(days=expier_new_user)
             user_new = User(mobile=args['phone'], name='', createAt=createAt,expier=expier)
             user_new.save()
+            notif_new_user = Notifications(mobile=args['phone'],title='اشتراک هدیه',description=f'برای ثبت نام شما {expier_new_user} روز اشتراک هدیه برای شما لحاظ شد',avatar='assets/icons/glass/gift.png',type=None,createAt=datetime.datetime.now(),isUnRead=True)
+            notif_new_user.save()
             user_one = User.get_user_one_by_phone(args['phone'])
         
         try:
