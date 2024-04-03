@@ -26,7 +26,7 @@ class Login(Resource):
         if user_one == None:
             createAt=datetime.datetime.now()
             expier = createAt + datetime.timedelta(days=expier_new_user)
-            user_new = User(mobile=args['phone'], name='', createAt=createAt,expier=expier, avatar=AvatarCreator())
+            user_new = User(mobile=args['phone'], name='', createAt=createAt, expier=expier, avatar=AvatarCreator(), limit=1)
             user_new.save()
             notif_new_user = Notifications(mobile=args['phone'],title='اشتراک هدیه',description=f'برای ثبت نام شما {expier_new_user} روز اشتراک هدیه برای شما لحاظ شد',avatar='assets/icons/glass/gift.png',type=None,createAt=datetime.datetime.now(),isUnRead=True)
             notif_new_user.save()

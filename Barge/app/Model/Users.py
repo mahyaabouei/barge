@@ -10,6 +10,7 @@ class User(Document):
     createAt = DateTimeField()
     expier = DateTimeField()
     avatar = StringField()
+    limit = IntField()
 
     @classmethod
     def get_user_one_by_phone(cls, mobile_number):
